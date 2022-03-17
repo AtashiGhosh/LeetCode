@@ -4,11 +4,11 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        stack, curr = [], 0
+        stack, cur = [], 0
         for i in s:
             if i == '(':
-                stack.append(curr)
-                curr = 0
+                stack.append(cur)
+                cur = 0
             else:
-                curr += stack.pop() + max(curr, 1)
-        return curr
+                cur += stack.pop() + max(cur, 1)
+        return cur
