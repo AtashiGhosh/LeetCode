@@ -1,0 +1,28 @@
+class Solution {
+public:
+     void findPreorder(TreeNode* root, unordered_map<int,int> &mp) {
+        if(!root) return;
+
+        mp[root->val]++;    // counting freq. of node
+        findPreorder(root->left,mp);
+        findPreorder(root->right,mp);
+    }
+
+    vector<int> findMode(TreeNode* root) {
+        unordered_map<int,int> mp;
+        findPreorder(root,mp);
+
+        int maxi = 0;   // find maximum Freq. of node
+        for(auto it : mp) {
+            maxi = max(maxi , it.second);
+        }
+
+        // travese on map(freq. map)
+        vector<int> res;
+        for(auto it : mp) {
+            if(it.second == maxi) res.push_back(it.first);
+        }
+
+        return res;
+    }
+};
