@@ -1,0 +1,20 @@
+static int maxProductDifference(const vector<int>& nums) {
+        int mx1 = numeric_limits<int>::min();
+        int mx2 = numeric_limits<int>::min();
+        int mn1 = numeric_limits<int>::max();
+        int mn2 = numeric_limits<int>::max();
+        for (const int n : nums) {
+            if (n > mx1) {
+                mx2 = mx1;
+                mx1 = n;
+            } else if (n > mx2) {
+                mx2 = n;
+            }
+            if (n < mn1) {
+                mn2 = mn1;
+                mn1 = n;
+            } else if (n < mn2) {
+                mn2 = n;
+            }
+        }
+        return mx1 * mx2 - mn1 * mn2;
